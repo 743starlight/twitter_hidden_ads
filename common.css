@@ -1,0 +1,44 @@
+/* カラムの大きさを宣言 */
+/* --full-width→全体の幅 */
+/* --third-colmn-width→DM/設定などの画面で3つ目のカラムの幅 */
+:root {
+  --full-width: 700px;
+  --third-colmn-width: 430px;
+}
+
+/* 右部サイドバーを非表示 */
+[data-testid="sidebarColumn"] {
+    display: none !important;
+}
+/*右部サイドバーを非表示にしたので、中央カラム部分が大きくなりすぎる */
+/* 全体幅を調整する */
+main .r-rthrr5 {
+    width: var(--full-width);
+}
+/* 全体幅を調整することによってDM/設定などの画面で2つ目のカラムが小さくなる */
+/* 中央列、右列それぞれにサイズを指定する */
+main .r-rthrr5 .r-1ye8kvj:nth-last-child(2){
+    width: calc(100% - var(--third-colmn-width));
+}
+main .r-rthrr5 .r-1ye8kvj+.r-1ye8kvj {
+    width: var(--third-colmn-width);
+}
+/* タイムライン部分のサイズは100%なので上書き */
+.r-1ye8kvj[data-testid="primaryColumn"],
+.r-1ye8kvj[data-testid="primaryColumn"] .r-1ye8kvj {
+    width: 100% !important;
+    max-width: 100%;
+}
+/* 広告・おすすめ・トピックを非表示に */
+[class$="css-1dbjc4n"][data-testid="placementTracking"],
+[class$="css-1dbjc4n"][aria-label$="のツイート"] [data-testid="UserCell"],
+[class$="css-1dbjc4n"] [aria-label="タイムライン: Carousel"] {
+    height: 0 !important;
+    overflow: hidden;
+    margin-top: -1px;
+    padding: 0
+}
+/* プロフページ内[プロモーションする]ボタンを非表示に */
+a[href$="quick_promote_web/intro"] {
+  display: none;
+}
